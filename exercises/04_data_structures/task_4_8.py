@@ -26,3 +26,13 @@
 """
 
 ip = "192.168.3.1"
+
+def draw(l):
+	for i in l:
+		print(i.ljust(10), end='')
+		print('  ', end='')
+	print()
+	
+draw(ip.split('.'))
+ip_2 = [str(bin(int(i)))[2:].rjust(8 , '0') for i in ip.split('.')]
+draw(ip_2)
