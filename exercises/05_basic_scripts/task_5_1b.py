@@ -43,6 +43,7 @@ london_co = {
     "sw1": {
         "location": "21 New Globe Walk",
         "vendor": "Cisco",
+        
         "model": "3850",
         "ios": "3.6.XE",
         "ip": "10.255.0.101",
@@ -50,3 +51,9 @@ london_co = {
         "routing": True,
     },
 }
+
+name = input('Введите имя устройства: ')
+list_pr = 'Введите имя параметра (' +\
+		  ', '.join(list(london_co[name].keys())) + '): '
+pr = input(list_pr)
+print(london_co[name][pr])
