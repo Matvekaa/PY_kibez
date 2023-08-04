@@ -49,3 +49,40 @@ bin_ip = "00001010000000010000000111000011"
 Ограничение: Все задания надо выполнять используя только пройденные темы.
 
 """
+
+
+def draw(l):
+	for i in l:
+		print(i.ljust(10), end='')
+		print('  ', end='')
+	print()
+	
+
+ip_str, mask_str = input('введите IP-сети: ').split('/')
+ip_list = [i for i in ip_str.split('.')]
+ip_bin_list = [str(bin(int(i)))[2:].rjust(8, '0') for i in ip_list]
+mask_str_bin = ('1' * int(mask_str)) + ('0' * (32 - int(mask_str)))
+mask_list_oct = [mask_str_bin[i * 8:(i + 1) * 8]for i in range(4)]
+mask_list_int = [str(int(i, 2)) for i in mask_list_oct]
+zero_pos_in_mask = ''.join(mask_list_oct).index('0')
+if '1' in ''.join(ip_bin_list)[zero_pos_in_mask:]:
+	new_ip_list = [str(int(ip_list[i]) & int(mask_list_int[i])) 
+				   for i in range(4)]
+	new_ip_bin_list = [str(bin(int(i)))[2:].rjust(8, '0')
+					   for i in new_ip_list]
+	print('Network:')
+	draw(new_ip_list)
+	draw(new_ip_bin_list)
+	print()
+	print('Mask:\n/' + str(mask_str))
+	draw(mask_list_int)
+	draw(mask_list_oct)
+	
+else:
+	print('Network:')
+	draw(ip_list)
+	draw(ip_bin_list)
+	print()
+	print('Mask:\n/' + str(mask_str))
+	draw(mask_list_int)
+	draw(mask_list_oct)

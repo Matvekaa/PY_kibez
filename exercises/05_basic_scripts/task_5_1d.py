@@ -43,3 +43,12 @@ london_co = {
         "routing": True,
     },
 }
+
+name = input('Введите имя устройства: ')
+list_pr = 'Введите имя параметра (' +\
+		  ', '.join(list(london_co[name].keys())) + '): '
+pr = input(list_pr).lower()
+if pr not in london_co[name].keys():
+	print('Такого параметра нет')
+else:
+	print(london_co[name][pr])
